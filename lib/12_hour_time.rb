@@ -13,30 +13,30 @@
 # 
 
 # :enddoc:
-if defined? ActiveRecord
-class ActiveRecord::Base # :nodoc: all
-  def instantiate_time_object_with_ampm(name, values)
-    if values.last < 0
-      ampm = values.pop
-      if ampm == ActionView::Helpers::DateTimeSelector::AM and values[3] == 12
-        values[3] = 0
-      elsif ampm == ActionView::Helpers::DateTimeSelector::PM and values[3] != 12
-        values[3] += 12
-      end
-    end
-
-    instantiate_time_object_without_ampm(name, values)
-  end
-
-  alias_method_chain :instantiate_time_object, :ampm
-end
-end
-
-ActionView::Helpers::DateTimeSelector.send(:remove_const, :POSITION)
-ActionView::Helpers::DateTimeSelector.const_set(:POSITION, {
-  :year => 1, :month => 2, :day => 3, :hour => 4, :minute => 5,
-  :second => 6, :ampm => 7
-})
+# if defined? ActiveRecord
+# class ActiveRecord::Base # :nodoc: all
+#   def instantiate_time_object_with_ampm(name, values)
+#     if values.last < 0
+#       ampm = values.pop
+#       if ampm == ActionView::Helpers::DateTimeSelector::AM and values[3] == 12
+#         values[3] = 0
+#       elsif ampm == ActionView::Helpers::DateTimeSelector::PM and values[3] != 12
+#         values[3] += 12
+#       end
+#     end
+# 
+#     instantiate_time_object_without_ampm(name, values)
+#   end
+# 
+#   alias_method_chain :instantiate_time_object, :ampm
+# end
+# end
+# 
+# ActionView::Helpers::DateTimeSelector.send(:remove_const, :POSITION)
+# ActionView::Helpers::DateTimeSelector.const_set(:POSITION, {
+#   :year => 1, :month => 2, :day => 3, :hour => 4, :minute => 5,
+#   :second => 6, :ampm => 7
+# })
 
 # Included manully in UnobtrusiveDatePicker
 # module ActionView::Helpers
